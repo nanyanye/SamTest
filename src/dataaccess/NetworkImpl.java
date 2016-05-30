@@ -16,7 +16,6 @@ public class NetworkImpl implements Network {
 	
 	public void getDate(final UrlInfo urlInfo,final Consumer<String> consumer){
 		 new Thread(new Runnable() {
-			
 			public void run() {
 				BufferedReader reader = null;
 			    String result = null;

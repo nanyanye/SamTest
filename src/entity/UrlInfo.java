@@ -14,7 +14,6 @@ public class UrlInfo {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	@Override
 	public String toString() {
 		return "UrlInfo [urlName=" + urlName + ", url=" + url + "]";
 	}

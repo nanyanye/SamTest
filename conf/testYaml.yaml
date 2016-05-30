@@ -1,4 +1,3 @@
-# --- 代表区分不同的档案信息
 #YAML使用可打印的Unicode字符，可使用UTF-8或UTF-16
 #> - 使用**空白字符**（不能使用<kbd>Tab</kbd>）分层，同层元素左侧对齐
 #> - 单行注解由井字号（<kbd> #</kbd> ）开始，可以出现在行中任何位置
@@ -28,8 +27,8 @@
 urlName:小可乐充电桩
 url:http://n5ken.com:4000/charging_points.json
 --- &1 !mian.UrlInfo
-urlName:新闻
-url:http://api.1-blog.com/biz/bizserver/news/list.do
+urlName:笑话
+url:http://api.1-blog.com/biz/bizserver/xiaohua/list.do
 --- &2 !mian.UrlInfo
 urlName:新浪天气
 url:http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&city=&dfc=1&charset=utf-8
