@@ -30,6 +30,6 @@ url:http://n5ken.com:4000/charging_points.json
 urlName:笑话
 url:http://api.1-blog.com/biz/bizserver/xiaohua/list.do
 --- &2 !mian.UrlInfo
-urlName:新浪天气
-url:http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&city=&dfc=1&charset=utf-8
+urlName:天气
+url:http://www.weather.com.cn/adat/sk/101280701.html
 
