@@ -23,13 +23,7 @@
 #> - 可选择性的连续三个点号（<kbd>...</kbd>）用来表示档案结尾(在流式传输时非常有用，不需要关闭流即可知道到达结尾处)
 #> - 重复的内容可使从参考标记星号 (<kbd>*</kbd>)复制到锚点标记（<kbd>&</kbd>）
 #> - 指定格式可以使用两个惊叹号 ( !! )，后面接上名称
---- &0 !mian.UrlInfo
-urlName:小可乐充电桩
 url:http://n5ken.com:4000/charging_points.json
---- &1 !mian.UrlInfo
-urlName:笑话
-url:http://api.1-blog.com/biz/bizserver/xiaohua/list.do
---- &2 !mian.UrlInfo
-urlName:天气
+url:https://api.heweather.com/x3/weather?cityid=CN101280701&key=22841345a2b040a78f40ccd727480f1f
 url:http://www.weather.com.cn/adat/sk/101280701.html
-
+#url:http://www.baidu.com
