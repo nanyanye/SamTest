@@ -14,6 +14,11 @@ import java.util.List;
 
 import org.yaml.snakeyaml.Yaml;
 
+import utils.IOUtil;
+import utils.IOUtilImpl;
+import utils.NetworkUtil;
+import utils.NetworkUtilImpl;
+
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 
@@ -29,17 +34,22 @@ public class Test {
 	 *            value 关键字查询出所有满足条件的 key
 	 */
 	public static void main(String[] args) {
+		System.out.println((Test.class.getResource("") + "").substring(6));
 		getData();
 	}
 
 	public static void getData() {
-		Object objYaml = null;
+		//网络请求
+		NetworkUtil networkUtil  = new NetworkUtilImpl();
+		//IO工具类
+		IOUtil ioUtil = new IOUtilImpl();
+		String yamlMsg = "";
 		try {
-			objYaml = new Yaml().load(new FileInputStream(new File("conf/testYaml.yaml")));
+			yamlMsg = ioUtil.yamlLoadToString("conf/testYaml.yaml");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		List<String> list = new ArrayList<String>(Arrays.asList(objYaml.toString().split("url:")));
+		List<String> list = new ArrayList<String>(Arrays.asList(yamlMsg.split("url:")));
 		list.stream().filter(url -> url.length() > 1).forEach((u) -> {
 			try {
 				Thread.sleep(10);
@@ -50,9 +60,8 @@ public class Test {
 
 				String fileName = System.currentTimeMillis() + "";
 				String classPath = (Test.class.getResource("") + "").substring(6);
-				// guava io
 				try {
-					ByteStreams.copy(new URL(u).openStream(), new FileOutputStream(classPath + fileName + ".txt"));
+					ByteStreams.copy(networkUtil.getInputStreamByUrl(u), new FileOutputStream(classPath + fileName + ".txt"));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}catch (IOException e) {
@@ -60,13 +69,11 @@ public class Test {
 				}
 				JSONObject object = null;
 				try {
-					object = JSONObject.fromObject(
-							Files.readFirstLine(new File(classPath + fileName + ".txt"), StandardCharsets.UTF_8));
+					object = ioUtil.fileToJsonObject(classPath + fileName + ".txt");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				decodeJSONObject(object);
-
 			}).start();
 		});
 	}
