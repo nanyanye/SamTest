@@ -23,7 +23,8 @@
 #> - 可选择性的连续三个点号（<kbd>...</kbd>）用来表示档案结尾(在流式传输时非常有用，不需要关闭流即可知道到达结尾处)
 #> - 重复的内容可使从参考标记星号 (<kbd>*</kbd>)复制到锚点标记（<kbd>&</kbd>）
 #> - 指定格式可以使用两个惊叹号 ( !! )，后面接上名称
-url:http://n5ken.com:4000/charging_points.json
-url:https://api.heweather.com/x3/weather?cityid=CN101280701&key=22841345a2b040a78f40ccd727480f1f
-url:http://www.weather.com.cn/adat/sk/101280701.html
-#url:http://www.baidu.com
+url:http://api.avatardata.cn/Joke/QueryJokeByTime?key=d180f1faf7414e629b3823d585686eae&page=5&rows=5&sort=asc&time=1418745237
+url:http://api.avatardata.cn/GuoNeiNews/Query?key=0fa998fe9fe74400b5bd96fbe17937f9&page=1&rows=5
+url:http://api.avatardata.cn/TangShiSongCi/Search?key=460afc4e6b34422fa4449086e918a5dc&keyWord=李白
+#url:http://api.avatardata.cn/Weather/Query?key=23b733004c034edfb0c663fc656551bf&cityname=珠海
+
