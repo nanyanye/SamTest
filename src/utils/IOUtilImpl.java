@@ -24,4 +24,9 @@ public class IOUtilImpl implements IOUtil {
 	public JSONObject fileToJsonObject(String filePath) throws IOException {
 		return JSONObject.fromObject(Files.readFirstLine(new File(filePath), StandardCharsets.UTF_8));
 	}
+
+	@Override
+	public Object yamlLoad(String filePath) throws FileNotFoundException {
+		return new Yaml().load(new FileInputStream(new File(filePath)));
+	}
 }
