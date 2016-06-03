@@ -6,7 +6,7 @@ import java.io.IOException;
 import net.sf.json.JSONObject;
 
 public interface IOUtil {
-	String yamlLoadToString(String filePath) throws FileNotFoundException;
-	Object yamlLoad(String filePath) throws FileNotFoundException;
+	String yamlLoadToString(String filePath) throws FileNotFoundException, IOException;
+	Object yamlLoad(String filePath) throws FileNotFoundException, IOException;
 	JSONObject fileToJsonObject(String filePath) throws IOException;
 }

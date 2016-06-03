@@ -34,48 +34,67 @@ public class Test {
 	 *            value 关键字查询出所有满足条件的 key
 	 */
 	public static void main(String[] args) {
-		System.out.println((Test.class.getResource("") + "").substring(6));
+		//System.out.println((Test.class.getResource("") + "").substring(6));
 		getData();
 	}
 
 	public static void getData() {
-		//网络请求
-		NetworkUtil networkUtil  = new NetworkUtilImpl();
-		//IO工具类
+		// 网络请求
+		NetworkUtil networkUtil = new NetworkUtilImpl();
+		// IO工具类
 		IOUtil ioUtil = new IOUtilImpl();
 		String yamlMsg = "";
 		try {
-			yamlMsg = ioUtil.yamlLoadToString("conf/testYaml.yaml");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		List<String> list = new ArrayList<String>(Arrays.asList(yamlMsg.split("url:")));
-		list.stream().filter(url -> url.length() > 1).forEach((u) -> {
 			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				yamlMsg = ioUtil.yamlLoadToString("conf/testYaml.yaml");
+			} catch (FileNotFoundException e) {
+				System.err.println("File no Found Exception");
 			}
-			new Thread(() -> {
-
-				String fileName = System.currentTimeMillis() + "";
-				String classPath = (Test.class.getResource("") + "").substring(6);
-				try {
-					ByteStreams.copy(networkUtil.getInputStreamByUrl(u), new FileOutputStream(classPath + fileName + ".txt"));
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}catch (IOException e) {
-					e.printStackTrace();
-				}
-				JSONObject object = null;
-				try {
-					object = ioUtil.fileToJsonObject(classPath + fileName + ".txt");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				decodeJSONObject(object);
-			}).start();
-		});
+		} catch (IOException e) {
+			System.err.println("I/O Exception");
+		}
+		List<String> list = new ArrayList<String>(Arrays.asList(yamlMsg
+				.split("url:")));
+		list.stream()
+				.filter(url -> url.length() > 1)
+				.forEach(
+						(u) -> {
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e) {
+								System.err
+										.println("Thread Interrupted Exception!");
+							}
+							new Thread(
+									() -> {
+										String fileName = System
+												.currentTimeMillis() + ".txt";
+										String classPath = (Test.class
+												.getResource("") + "")
+												.substring(6);
+										try {
+											ByteStreams.copy(networkUtil
+													.getInputStreamByUrl(u),
+													new FileOutputStream(
+															classPath
+																	+ fileName));
+										} catch (FileNotFoundException e) {
+											System.err
+													.println("File no Found Exception");
+										} catch (IOException e) {
+											System.err.println("I/O Exception");
+										}
+										JSONObject object = null;
+										try {
+											object = ioUtil
+													.fileToJsonObject(classPath
+															+ fileName);
+										} catch (IOException e) {
+											System.err.println("I/O Exception");
+										}
+										decodeJSONObject(object);
+									}).start();
+						});
 	}
 
 	// 循环遍历json所有信息

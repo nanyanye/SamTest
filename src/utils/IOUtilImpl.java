@@ -15,8 +15,10 @@ import net.sf.json.JSONObject;
 public class IOUtilImpl implements IOUtil {
 
 	@Override
-	public String yamlLoadToString(String filePath) throws FileNotFoundException {
-		Object objYaml = new Yaml().load(new FileInputStream(new File(filePath)));
+	public String yamlLoadToString(String filePath) throws FileNotFoundException,IOException {
+		FileInputStream fs = new FileInputStream(new File(filePath));
+		Object objYaml = new Yaml().load(fs);
+			fs.close();
 		return objYaml.toString();
 	}
 
@@ -26,7 +28,10 @@ public class IOUtilImpl implements IOUtil {
 	}
 
 	@Override
-	public Object yamlLoad(String filePath) throws FileNotFoundException {
-		return new Yaml().load(new FileInputStream(new File(filePath)));
+	public Object yamlLoad(String filePath) throws FileNotFoundException ,IOException {
+		FileInputStream fileInputStream =new FileInputStream(new File(filePath)) ;
+		Object object = new Yaml().load(fileInputStream);
+		fileInputStream.close();
+		return object;
 	}
 }
