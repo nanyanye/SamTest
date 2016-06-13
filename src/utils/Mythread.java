@@ -1,4 +1,4 @@
-package utils;
+﻿package utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +24,7 @@ public class Mythread extends Thread {
 	public void run() {
 		String fileName = System.currentTimeMillis() + ".txt";
 		String classPath = (Test.class.getResource("") + "").substring(6);
+		
 		try {
 			ByteStreams.copy(networkUtil.getInputStreamByUrl(path),
 					new FileOutputStream(classPath + fileName));

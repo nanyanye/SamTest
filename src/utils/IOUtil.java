@@ -10,5 +10,5 @@ public interface IOUtil {
 	List<String> yamlLoadToList(String filePath) throws FileNotFoundException, IOException;
 	String yamlLoadToString(String filePath) throws FileNotFoundException, IOException;
 	Object yamlLoad(String filePath) throws FileNotFoundException, IOException;
-	JSONObject fileToJsonObject(String filePath) throws IOException;
+	JSONObject fileToJsonObject(String filePath) throws FileNotFoundException,IOException;
 }

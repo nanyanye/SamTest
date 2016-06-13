@@ -17,14 +17,12 @@ public class Test {
 	 *            value 关键字查询出所有满足条件的 key
 	 */
 	public static void main(String[] args) {
-		// System.out.println((Test.class.getResource("") + "").substring(6));
 		Test test = new Test();
 		test.getData();
 	}
 
 	public void getData() {
 		IOUtil ioUtil = new IOUtilImpl();
-		
 		List<String> list = null;
 		try {
 			list = ioUtil.yamlLoadToList("conf/testYaml.yaml");
@@ -34,6 +32,11 @@ public class Test {
 			System.err.println("I/O Exception");
 		}
 		list.stream().filter(url -> url.length() > 1).forEach((u) -> {
+			try {
+				Thread.sleep(5);
+			} catch (Exception e) {
+				System.err.println("Thread InterruptedException");
+			}
 			new Mythread(u).start();
 		});
 	}
